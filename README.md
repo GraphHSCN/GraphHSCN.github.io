@@ -2,7 +2,7 @@
 
 This is the repository that contains source code for the [CANet website](https://CANet-GNN.github.io).
 
-If you find Nerfies useful for your work please cite (not yet available):
+If you find CANet useful for your work please cite (not yet available):
 ```
 @article{xxx
   author    = {Tao, Sirui and Luo, Zhishang and Dunning, Camille},
