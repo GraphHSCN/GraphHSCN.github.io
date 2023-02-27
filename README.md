@@ -12,3 +12,4 @@ If you find CANet useful for your work please cite (not yet available):
 }
 ```
 
+(Website template borrowed from [NeRFies](https://github.com/nerfies/nerfies.github.io) made by the amazing [Keunhong Park](https://keunhong.com/).)
