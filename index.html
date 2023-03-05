@@ -254,33 +254,7 @@
             and diffusion models are introduced. Yet, these models are not tested on large graph datasets with long-range interactions. 
             Hence, this paper will validate existing  state-of-the-art (SOTA) models on a specifically designed long-range interaction dataset.
           </p>
-          <!-- <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRFI
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p> -->
+
         </div>
       </div>
     </div>
@@ -290,8 +264,94 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Architecture. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Architecture</h2>
 
+        <div class="content has-text-justified">
+          <p>
+            Our model is composed of the following components: <br>
+            - SignNet Positional Encoder <br>
+            - Spectral Clustering Network <br>
+            - Heterogeneous Graph Neural Network <br>
+            (images here)<br>
 
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Architecture. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The models are tested on the following datasets: <br>
+            - Cora <br>
+            - Peptide <br>
+          </p>
+          <p>
+            They are benchmarked against the following models: <br>
+            - GCN <br>
+            - GAT <br>
+            - GraphSAGE <br>
+            - Diffusion <br>
+            - Transformer <br>
+
+          </p>
+          <p>
+            The results of our model are shown below: <br>
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Discussion. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Discussion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There still exists a lot of room for improvement. <br>
+            - We can use a more sophisticated clustering algorithm to cluster the nodes. <br>
+            - We can use a more sophisticated graph neural network to learn the node embeddings. <br>
+            - We can use a more sophisticated graph neural network to learn the cluster embeddings. <br>
+            - We can use a more sophisticated positional encoder to encode the node positions. <br>
+            - We can use an efficient attention mechanism to compute the attention weights for increasing cluster number and hierachy for larger graphs. <br>
+            
+            
+          </p>
+          <p>
+            The results of our model are shown below: <br>
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Discussion. -->
+
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
