@@ -1,12 +1,12 @@
-# CHGNN: Clusterized Heterogeneous Graph Neural Network for Long Range Graph Data
+# GraphHSCN: Heterogenized Spectral Cluster Network for Long Range Graph Data
 
-This is the repository that contains source code for the [CHGNN website](https://CHGNN.github.io).
+This is the repository that contains source code for the [GraphHSCN website](https://GraphHSCN.github.io).
 
-If you find CHGNN useful for your work please cite (not yet available):
+If you find GraphHSCN useful for your work please cite (not yet available):
 ```
 @article{xxx
   author    = {Tao, Sirui and Luo, Zhishang and Dunning, Camille},
-  title     = {CHGNN: Clusterized Heterogeneous Graph Neural Network for Long Range Graph Data},
+  title     = {GraphHSCN: Heterogenized Spectral Cluster Network for Long Range Graph Data},
   journal   = {arxiv},
   year      = {2023},
 }
