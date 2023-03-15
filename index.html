@@ -107,7 +107,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://github.com/GraphHSCN/GraphHSCN.github.io"
+                <a href="static/images/paper/DSC_180B_Report.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -146,7 +146,7 @@
               </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="https://GraphHSCN.github.io/"
+                <a href="/static/images/poster/DSC_180B_Poster.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
@@ -247,7 +247,7 @@
         <div class="content has-text-justified">
           <p>
             Graph Neural Networks (GNNs) have recently gained tremendous popularity as they showed promising results in solving 
-            graph-structure data that are very common in real-world applications. However, most models can only handle local 
+            graph-structure data that  are very common in real-world applications. However, most models can only handle local 
             interactions in a graph using the message-passing paradigm (i.e., interaction within a neighborhood of a few nodes). 
             When we enforce the models to use information from far away nodes, we will encounter two major issues—over-smoothing \& over-squashing. 
             To solve this, architectures such as transformer 
@@ -273,20 +273,68 @@
 
         <div class="content has-text-justified">
           <p>
-            Our model is composed of the following components: <br>
-            - SignNet Positional Encoder <br>
-            - Spectral Clustering Network <br>
-            - Heterogeneous Graph Neural Network <br>
-            (images here)<br>
-
+            Our model is composed of the following components: 
+            <ul>
+              <li>
+                SignNet Positional Encoder
+                <ul>
+                  <li>
+                In the architecture we determined to use SignNet to compute
+                the positional encoding for each graph. We pre-computed
+                the top 50 eigenvalues and corresponding eigenvectors of the
+                laplacian matrix L of each graph. Then we used the com-
+                puted top 50 eigenvectors (Nx50) as the input for the SignNet.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Spectral clustering
+                <ul>
+                  <li>
+                    We trained a GNN model using pytorch-geometric and used
+                    the loss functions as the sum of minCUT Loss and orthogonal
+                    Loss to compute the cluster assignment for each graphs. We
+                    trained for each graph for about 50 iterations with a early stop
+                    threshold of loss decrease as 0.001. With the trained model
+                    we get the cluster assignments which we used in the next step
+                    to create virtual nodes and construct the heterogenous graph
+                    dataset.
+                    </li>
+                  </ul>
+              </li>
+              <li>
+                Heterogeneous graph
+                <ul>
+                  <li>
+                    From the original graphs after we trained and computed the
+                    clusters we will add one new virtual node for each of the clus-
+                    ter. For K clusters, where K is a arbitrary number, we will add
+                    K new virtual nodes. For each virtual node, we will add M
+                    new edges between all the nodes in one cluster and the new
+                    virtual node, where M is the number of the nodes in a clus-
+                    ter. After virtual nodes connect the local nodes, we will fully
+                    connect all the virtual nodes. To address the different proper-
+                    ties of the edges from local nodes to local nodes, the edges
+                    from local nodes to virtual nodes and the edges from virtual
+                    nodes to virtual nodes, we applied the idea of Heterogenous
+                    Graph Neural Network by using different message passing
+                    convolution layers for different types of edges.
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </p>
+          <br>
+          <center>
+            <img src="static/images/figures/architecture.png" alt="Peptides Dataset Results." width="50%">
+          </center>
 
         </div>
       </div>
     </div>
     <!--/ Architecture. -->
 
-    
+
 
   </div>
 </section>
@@ -294,28 +342,42 @@
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Results. -->
+    
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
-
+        Because of the limited time and computational resources, 
+        we could not run the experiment for all the datasets. 
+        Therefore, we chose the dataset Peptides-func and Peptides-struct and re-sampled citation dataset from Cora. 
+        We used Average Precision, Accuracy, and Mean Absolute Error corresponding to the dataset as suggested by the author. Our baseline models are GCN, GAT, GIN, and SAN. 
+    <br>
+    <br>
         <div class="content has-text-justified">
           <p>
-            The models are tested on the following datasets: <br>
-            - Cora <br>
-            - Peptide <br>
+            The models are tested on the following datasets: 
+            <ul>
+              <li>Citation Dataset</li>
+              <li>Peptides Dataset</li>
+            </ul>
           </p>
           <p>
-            They are benchmarked against the following models: <br>
-            - GCN <br>
-            - GAT <br>
-            - GraphSAGE <br>
-            - Diffusion <br>
-            - Transformer <br>
+            They are benchmarked against the following models: 
+            <ul>
+              <li>GCN</li>
+              <li>GAT</li>
+              <li>GIN</li>
+              <li>SAN ( (SAN is not used in the citation dataset due to la)</li>
+            </ul>
+            
+          </p>
+          <p>
+            The results of our model are shown below: 
+            As figures indicate, we achieved a similar performance as SAN for peptides datasets, which is better than other common Message-passing GNNs. Yet, we are way more efficient than SAN.
+            <br>
+          </p>
 
-          </p>
-          <p>
-            The results of our model are shown below: <br>
-          </p>
+          <img src="static/images/figures/citation_res.png" alt="Citation Dataset Results." width="35%">
+          <img src="static/images/figures/peptides_res.png" alt="Peptides Dataset Results." width="60%">
 
         </div>
       </div>
@@ -334,17 +396,24 @@
 
         <div class="content has-text-justified">
           <p>
-            There still exists a lot of room for improvement. <br>
-            - We can use a more sophisticated clustering algorithm to cluster the nodes. <br>
-            - We can use a more sophisticated graph neural network to learn the node embeddings. <br>
-            - We can use a more sophisticated graph neural network to learn the cluster embeddings. <br>
-            - We can use a more sophisticated positional encoder to encode the node positions. <br>
-            - We can use an efficient attention mechanism to compute the attention weights for increasing cluster number and hierachy for larger graphs. <br>
+            As our model is not performing as well on the resampled citation datasets, we proposes the following potential causes:
+            <br>
+            <ul>
+              <li>
+                The Cora dataset originally might not contain very important long-range interactions, 
+                therefore after re-sample it's still not sure if the long-range interactions now contained in the graphs are strong enough to have great influences on the predictions. 
+              </li>
+              <li>
+                Cora dataset contains one single graph for node-level tasks. 
+                While our models work well for graph-level tasks, the cluster-method with the fully connected virtual 
+                nodes might lead the graph to another side of over-smoothing. While we used heterogenous GNN to try to address this possible issue, that might still has an influence on node-level predictions tasks. 
+              </li>
+        
+                </ul>
+              </li>
+            </ul>
+             
             
-            
-          </p>
-          <p>
-            The results of our model are shown below: <br>
           </p>
 
         </div>
@@ -366,19 +435,13 @@
           <p>
             There's a lot of excellent work that was introduced around the same time as ours.
           </p>
-          <!-- <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p> -->
+          <ul>
+            <li>
+              <a href="https://arxiv.org/pdf/2210.11790.pdf">FoSR: First-Order Spectral Rewiring for Addressing Oversquashing in GNNs</a>
+            </li>
+            <li>
+              <a href="https://proceedings.neurips.cc/paper/2021/file/b4fd1d2cb085390fbbadae65e07876a7-Paper.pdf">Rethinking Graph Transformers with Spectral Attention (SAN)</a>
+            </li>
         </div>
       </div>
     </div>
@@ -393,7 +456,7 @@
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{xxx
   author    = {Tao, Sirui and Luo, Zhishang and Dunning, Camille},
-  title     = {CHGNN: Clusterized Heterogeneous Graph Neural Network for Long Range Graph Data},
+  title     = {GraphHSCN: Heterogenized Spectral Cluster Network for Long Range Graph Data},
   journal   = {arxiv},
   year      = {2023},
 }</code></pre>
