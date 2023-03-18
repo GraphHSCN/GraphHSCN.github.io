@@ -246,13 +246,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Graph Neural Networks (GNNs) have recently gained tremendous popularity as they showed promising results in solving 
-            graph-structure data that  are very common in real-world applications. However, most models can only handle local 
-            interactions in a graph using the message-passing paradigm (i.e., interaction within a neighborhood of a few nodes). 
-            When we enforce the models to use information from far away nodes, we will encounter two major issues—over-smoothing \& over-squashing. 
-            To solve this, architectures such as transformer 
-            and diffusion models are introduced. Yet, these models are not tested on large graph datasets with long-range interactions. 
-            Hence, this paper will validate existing  state-of-the-art (SOTA) models on a specifically designed long-range interaction dataset.
+            Graph Neural Networks (GNNs) have gained tremendous
+            popularity for their potential to effectively learn from graphstructured data, commonly encountered
+             in real-world applications. However, most of these models, based on the messagepassing paradigm 
+             (interaction within a neighborhood of a
+            few nodes), can only handle local interactions within a graph.
+            When we enforce the models to use information from far away
+            nodes, we will encounter two major issues — oversmoothing
+            & oversquashing. Architectures such as the transformer and diffusion models are introduced to solve this. Yet,
+            these models are not tested on large graph datasets containing graphs with large diameters. Although transformers are
+            powerful, they require significant computational resources for
+            both training and inference, thereby limiting their scalability,
+            particularly for graphs with long-term dependencies. Hence,
+            this paper proposes GraphHSCN—a Heterogenized Spectral
+            Cluster Network, a message-passing-based approach specifically designed for capturing long-range 
+            interaction information (when prediction depends on representations of distant
+            nodes interacting with each other).
           </p>
 
         </div>
