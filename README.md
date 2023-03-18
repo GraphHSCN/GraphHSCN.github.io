@@ -1,6 +1,7 @@
 # GraphHSCN: Heterogenized Spectral Cluster Network for Long Range Graph Data
 
 This is the repository that contains source code for the [GraphHSCN website](https://GraphHSCN.github.io).
+The code for the paper is [here](https://github.com/camille-004/Graph-HSCN).
 
 If you find GraphHSCN useful for your work please cite (not yet available):
 ```
